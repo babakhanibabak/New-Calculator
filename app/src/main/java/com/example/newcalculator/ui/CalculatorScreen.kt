@@ -33,7 +33,21 @@ fun CalculatorScreenContent(
     uiState: CalculatorScreenUiState,
     onOperatorClick:(CalculatorOperator)->Unit={}
 ) {
+    Scaffold(modifier = Modifier.fillMaxSize(),
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(text = "")
+                }
+            )
+        }
+    ) {paddingValues ->
+        Column (
+            modifier = Modifier.padding(paddingValues)
+        ){
 
+        }
+    }
 }
 
 @Preview
