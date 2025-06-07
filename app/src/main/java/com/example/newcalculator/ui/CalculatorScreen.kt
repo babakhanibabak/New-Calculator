@@ -1,16 +1,27 @@
 package com.example.newcalculator.ui
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.newcalculator.ui.component.CalculatorAppBar
+import com.example.newcalculator.ui.component.CalculatorRow
 import com.example.newcalculator.ui.theme.NewCalculatorTheme
 
 @Composable
@@ -38,7 +49,28 @@ fun CalculatorScreenContent(
         Column (
             modifier = Modifier.padding(paddingValues)
         ){
+            Box(
+                modifier = Modifier
+                    .background(color = Color.LightGray.copy(0.2f))
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
+            ) {
+                Text(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .align(Alignment.BottomCenter),
+                    text = uiState.result,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 64.sp,
+                    textAlign = TextAlign.End,
+                    color = Color.White,
+                    lineHeight = 76.sp,
+                )
+            }
+CalculatorRow {
 
+}
         }
     }
 }
