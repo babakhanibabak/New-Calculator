@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.newcalculator.ui.component.CalculatorAppBar
+import com.example.newcalculator.ui.component.CalculatorButton
 import com.example.newcalculator.ui.component.CalculatorRow
 import com.example.newcalculator.ui.theme.NewCalculatorTheme
 
@@ -39,7 +40,8 @@ fun CalculatorScreen(
 @Composable
 fun CalculatorScreenContent(
     uiState: CalculatorScreenUiState,
-    onOperatorClick:(CalculatorOperator)->Unit={}
+    onOperatorClick:(CalculatorOperator)->Unit={},
+    onClearClick:()-> Unit={}
 ) {
     Scaffold(modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -69,7 +71,8 @@ fun CalculatorScreenContent(
                 )
             }
 CalculatorRow {
-
+CalculatorButton( text = "AC",
+    onClick = onClearClick,)
 }
         }
     }
