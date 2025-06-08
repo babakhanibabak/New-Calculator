@@ -66,7 +66,7 @@ fun CalculatorScreenContent(
                     fontWeight = FontWeight.Bold,
                     fontSize = 64.sp,
                     textAlign = TextAlign.End,
-                    color = Color.White,
+                    color = Color.Black,
                     lineHeight = 76.sp,
                 )
             }
@@ -76,6 +76,15 @@ CalculatorButton( text = "AC",
     CalculatorButton(
         text = "+/-",
         onClick = { onOperatorClick(CalculatorOperator.PlusMinus) }
+    )
+    CalculatorButton(
+        text = "%",
+        onClick = { onOperatorClick(CalculatorOperator.Percent) }
+    )
+    CalculatorButton(
+        text = "÷",
+
+        onClick = { onOperatorClick(CalculatorOperator.Divide) }
     )
 }
         }
