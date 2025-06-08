@@ -73,6 +73,10 @@ fun CalculatorScreenContent(
 CalculatorRow {
 CalculatorButton( text = "AC",
     onClick = onClearClick,)
+    CalculatorButton(
+        text = "+/-",
+        onClick = { onOperatorClick(CalculatorOperator.PlusMinus) }
+    )
 }
         }
     }
