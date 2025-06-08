@@ -35,7 +35,7 @@ fun CalculatorRow(
 @Composable
  fun RowScope.CalculatorButton(
     modifier: Modifier = Modifier,
-    backgroundColor: Color = Color.DarkGray,
+    backgroundColor: Color = Color.LightGray,
     weight: Float = 1f,
     fontSize: TextUnit = 24.sp,
     text: String,
@@ -53,7 +53,7 @@ fun CalculatorRow(
     ) {
         Text(
             text = text,
-            color = Color.White,
+            color = Color.Black,
             fontWeight = FontWeight.Bold,
             fontSize = fontSize,
         )
