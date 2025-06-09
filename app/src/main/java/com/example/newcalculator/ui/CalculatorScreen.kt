@@ -32,7 +32,8 @@ fun CalculatorScreen(
     val uiState by viewModel.uiState.collectAsState()
 
     CalculatorScreenContent(
-        uiState = uiState
+        uiState = uiState,
+
     )
 }
 
@@ -41,7 +42,8 @@ fun CalculatorScreen(
 fun CalculatorScreenContent(
     uiState: CalculatorScreenUiState,
     onOperatorClick:(CalculatorOperator)->Unit={},
-    onClearClick:()-> Unit={}
+    onClearClick:()-> Unit={},
+    onNumberClick:(Int)->Unit={}
 ) {
     Scaffold(modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -71,8 +73,10 @@ fun CalculatorScreenContent(
                 )
             }
 CalculatorRow {
-CalculatorButton( text = "AC",
-    onClick = onClearClick,)
+CalculatorButton(
+    text = "AC",
+    onClick = onClearClick,
+    )
     CalculatorButton(
         text = "+/-",
         onClick = { onOperatorClick(CalculatorOperator.PlusMinus) }
@@ -85,6 +89,12 @@ CalculatorButton( text = "AC",
         text = "÷",
 
         onClick = { onOperatorClick(CalculatorOperator.Divide) }
+    )
+}
+CalculatorRow {
+    CalculatorButton(
+        text = "7",
+        onClick = {onNumberClick(7)}
     )
 }
         }
