@@ -96,6 +96,14 @@ CalculatorRow {
         text = "7",
         onClick = {onNumberClick(7)}
     )
+    CalculatorButton(
+        text = "8",
+        onClick = {onNumberClick(8)}
+    )
+    CalculatorButton(
+        text = "9",
+        onClick = {onNumberClick(9)}
+    )
 }
         }
     }
