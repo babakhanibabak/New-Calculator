@@ -104,7 +104,25 @@ CalculatorRow {
         text = "9",
         onClick = {onNumberClick(9)}
     )
+    CalculatorButton(
+        text = "*",
+        onClick ={onOperatorClick(CalculatorOperator.Multiply)}
+    )
 }
+            CalculatorRow {
+                CalculatorButton(
+                    text = "4",
+                    onClick = {onNumberClick(4)}
+                )
+                CalculatorButton(
+                    text = "5",
+                    onClick = {onNumberClick(5)}
+                )
+                CalculatorButton(
+                    text = "6",
+                    onClick = {onNumberClick(6)}
+                )
+            }
         }
     }
 }
