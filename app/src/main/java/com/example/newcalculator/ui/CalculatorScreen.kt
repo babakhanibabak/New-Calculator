@@ -149,7 +149,7 @@ CalculatorRow {
             CalculatorRow {
                 CalculatorButton(
                     text = "0",
-                    onClick = {onNumberClick(0)}
+                    onClick = {onNumberClick(1)}
                 )
                 CalculatorButton(
                     text = ".",
