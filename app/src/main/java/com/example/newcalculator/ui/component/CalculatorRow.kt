@@ -1,6 +1,5 @@
 package com.example.newcalculator.ui.component
 
-import android.widget.Button
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -17,6 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.newcalculator.ui.theme.numberButtonColor
 
 @Composable
 fun CalculatorRow(
@@ -25,7 +25,7 @@ fun CalculatorRow(
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(0.2.dp)
+        horizontalArrangement = Arrangement.spacedBy(0.5.dp)
     ) {
         content()
     }
@@ -35,7 +35,7 @@ fun CalculatorRow(
 @Composable
  fun RowScope.CalculatorButton(
     modifier: Modifier = Modifier,
-    backgroundColor: Color = Color.LightGray,
+    backgroundColor: Color = numberButtonColor,
     weight: Float = 1f,
     fontSize: TextUnit = 24.sp,
     text: String,
@@ -44,7 +44,7 @@ fun CalculatorRow(
     Button(
         modifier = modifier
             .weight(weight),
-        shape = RoundedCornerShape(4.dp),
+        shape = RoundedCornerShape(8.dp),
         contentPadding = PaddingValues(vertical = 32.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = backgroundColor,
