@@ -122,6 +122,10 @@ CalculatorRow {
                     text = "6",
                     onClick = {onNumberClick(6)}
                 )
+                CalculatorButton(
+                    text = "-",
+                    onClick = {onOperatorClick(CalculatorOperator.Minus)}
+                )
             }
         }
     }
