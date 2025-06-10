@@ -43,7 +43,8 @@ fun CalculatorScreenContent(
     uiState: CalculatorScreenUiState,
     onOperatorClick:(CalculatorOperator)->Unit={},
     onClearClick:()-> Unit={},
-    onNumberClick:(Int)->Unit={}
+    onNumberClick:(Int)->Unit={},
+    onDotClick:()->Unit={}
 ) {
     Scaffold(modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -143,6 +144,20 @@ CalculatorRow {
                 CalculatorButton(
                     text = "+",
                     onClick = {onOperatorClick(CalculatorOperator.Plus)}
+                )
+            }
+            CalculatorRow {
+                CalculatorButton(
+                    text = "0",
+                    onClick = {onNumberClick(0)}
+                )
+                CalculatorButton(
+                    text = ".",
+                    onClick = onDotClick
+                )
+                CalculatorButton(
+                    text = "=",
+                    onClick = {onOperatorClick(CalculatorOperator.Equals)}
                 )
             }
         }
