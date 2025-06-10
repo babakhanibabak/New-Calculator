@@ -12,4 +12,7 @@ class CalculatorScreenViewModel @Inject constructor():ViewModel() {
     private val _uiState = MutableStateFlow(CalculatorScreenUiState())
     val uiState = _uiState.asStateFlow()
 
+    fun onClearClick(){
+        _uiState.value=CalculatorScreenUiState()
+    }
 }
