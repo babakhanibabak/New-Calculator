@@ -24,6 +24,7 @@ import com.example.newcalculator.ui.component.CalculatorAppBar
 import com.example.newcalculator.ui.component.CalculatorButton
 import com.example.newcalculator.ui.component.CalculatorRow
 import com.example.newcalculator.ui.theme.NewCalculatorTheme
+import com.example.newcalculator.ui.theme.operatorButtonColor
 
 @Composable
 fun CalculatorScreen(
@@ -158,6 +159,7 @@ CalculatorRow {
                 )
                 CalculatorButton(
                     text = "=",
+                    backgroundColor = operatorButtonColor,
                     onClick = {onOperatorClick(CalculatorOperator.Equals)}
                 )
             }
