@@ -127,6 +127,24 @@ CalculatorRow {
                     onClick = {onOperatorClick(CalculatorOperator.Minus)}
                 )
             }
+            CalculatorRow {
+                CalculatorButton(
+                    text = "1",
+                    onClick = {onNumberClick(1)}
+                )
+                CalculatorButton(
+                    text = "2",
+                    onClick = {onNumberClick(2)}
+                )
+                CalculatorButton(
+                    text = "3",
+                    onClick = {onNumberClick(3)}
+                )
+                CalculatorButton(
+                    text = "+",
+                    onClick = {onOperatorClick(CalculatorOperator.Plus)}
+                )
+            }
         }
     }
 }
