@@ -148,6 +148,7 @@ CalculatorRow {
             }
             CalculatorRow {
                 CalculatorButton(
+                    weight = 2f,
                     text = "0",
                     onClick = {onNumberClick(1)}
                 )
