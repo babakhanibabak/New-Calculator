@@ -25,6 +25,7 @@ import com.example.newcalculator.ui.component.CalculatorButton
 import com.example.newcalculator.ui.component.CalculatorRow
 import com.example.newcalculator.ui.theme.NewCalculatorTheme
 import com.example.newcalculator.ui.theme.operatorButtonColor
+import com.example.newcalculator.ui.theme.resultBackgroundColor
 
 @Composable
 fun CalculatorScreen(
@@ -34,7 +35,8 @@ fun CalculatorScreen(
 
     CalculatorScreenContent(
         uiState = uiState,
-
+        onClearClick = viewModel::onClearClick,
+        onNumberClick = viewModel::onNumberClick
     )
 }
 
@@ -42,22 +44,23 @@ fun CalculatorScreen(
 @Composable
 fun CalculatorScreenContent(
     uiState: CalculatorScreenUiState,
-    onOperatorClick:(CalculatorOperator)->Unit={},
-    onClearClick:()-> Unit={},
-    onNumberClick:(Int)->Unit={},
-    onDotClick:()->Unit={}
-) {
+    onOperatorClick: (CalculatorOperator) -> Unit = {},
+    onClearClick: () -> Unit = {},
+    onNumberClick: (Int) -> Unit = {},
+    onDotClick: () -> Unit = {},
+
+    ) {
     Scaffold(modifier = Modifier.fillMaxSize(),
         topBar = {
-           CalculatorAppBar(title = "Calculator")
+            CalculatorAppBar(title = "Calculator")
         }
-    ) {paddingValues ->
-        Column (
+    ) { paddingValues ->
+        Column(
             modifier = Modifier.padding(paddingValues)
-        ){
+        ) {
             Box(
                 modifier = Modifier
-                    .background(color = Color.LightGray.copy(0.2f))
+                    .background(color = resultBackgroundColor)
                     .fillMaxWidth()
                     .weight(1f)
                     .padding(horizontal = 16.dp, vertical = 8.dp)
@@ -74,84 +77,90 @@ fun CalculatorScreenContent(
                     lineHeight = 76.sp,
                 )
             }
-CalculatorRow {
-CalculatorButton(
-    text = "AC",
-    onClick = onClearClick,
-    )
-    CalculatorButton(
-        text = "+/-",
-        onClick = { onOperatorClick(CalculatorOperator.PlusMinus) }
-    )
-    CalculatorButton(
-        text = "%",
-        onClick = { onOperatorClick(CalculatorOperator.Percent) }
-    )
-    CalculatorButton(
-        text = "÷",
-
-        onClick = { onOperatorClick(CalculatorOperator.Divide) }
-    )
-}
-CalculatorRow {
-    CalculatorButton(
-        text = "7",
-        onClick = {onNumberClick(7)}
-    )
-    CalculatorButton(
-        text = "8",
-        onClick = {onNumberClick(8)}
-    )
-    CalculatorButton(
-        text = "9",
-        onClick = {onNumberClick(9)}
-    )
-    CalculatorButton(
-        text = "*",
-        onClick ={onOperatorClick(CalculatorOperator.Multiply)}
-    )
-}
+            CalculatorRow {
+                CalculatorButton(
+                    text = "AC",
+                    backgroundColor = operatorButtonColor,
+                    onClick = onClearClick,
+                )
+                CalculatorButton(
+                    text = "+/-",
+                    backgroundColor = operatorButtonColor,
+                    onClick = { onOperatorClick(CalculatorOperator.PlusMinus) }
+                )
+                CalculatorButton(
+                    text = "%",
+                    backgroundColor = operatorButtonColor,
+                    onClick = { onOperatorClick(CalculatorOperator.Percent) }
+                )
+                CalculatorButton(
+                    text = "÷",
+                    backgroundColor = operatorButtonColor,
+                    onClick = { onOperatorClick(CalculatorOperator.Divide) }
+                )
+            }
+            CalculatorRow {
+                CalculatorButton(
+                    text = "7",
+                    onClick = { onNumberClick(7) }
+                )
+                CalculatorButton(
+                    text = "8",
+                    onClick = { onNumberClick(8) }
+                )
+                CalculatorButton(
+                    text = "9",
+                    onClick = { onNumberClick(9) }
+                )
+                CalculatorButton(
+                    text = " \u00D7 ",
+                    backgroundColor = operatorButtonColor,
+                    onClick = { onOperatorClick(CalculatorOperator.Multiply) }
+                )
+            }
             CalculatorRow {
                 CalculatorButton(
                     text = "4",
-                    onClick = {onNumberClick(4)}
+                    onClick = { onNumberClick(4) }
                 )
                 CalculatorButton(
                     text = "5",
-                    onClick = {onNumberClick(5)}
+                    onClick = { onNumberClick(5) }
                 )
                 CalculatorButton(
                     text = "6",
-                    onClick = {onNumberClick(6)}
+                    onClick = { onNumberClick(6) }
                 )
                 CalculatorButton(
                     text = "-",
-                    onClick = {onOperatorClick(CalculatorOperator.Minus)}
+                    backgroundColor = operatorButtonColor,
+                    onClick = { onOperatorClick(CalculatorOperator.Minus) }
                 )
             }
             CalculatorRow {
                 CalculatorButton(
                     text = "1",
-                    onClick = {onNumberClick(1)}
+                    onClick = { onNumberClick(1) }
                 )
                 CalculatorButton(
                     text = "2",
-                    onClick = {onNumberClick(2)}
+                    onClick = { onNumberClick(2) }
                 )
                 CalculatorButton(
                     text = "3",
-                    onClick = {onNumberClick(3)}
+                    onClick = { onNumberClick(3) }
                 )
                 CalculatorButton(
                     text = "+",
-                    onClick = {onOperatorClick(CalculatorOperator.Plus)}
+                    backgroundColor = operatorButtonColor,
+                    onClick = { onOperatorClick(CalculatorOperator.Plus) }
                 )
             }
             CalculatorRow {
                 CalculatorButton(
                     weight = 2f,
                     text = "0",
-                    onClick = {onNumberClick(1)}
+                    onClick = { onNumberClick(1) }
                 )
                 CalculatorButton(
                     text = ".",
@@ -160,7 +169,7 @@ CalculatorRow {
                 CalculatorButton(
                     text = "=",
                     backgroundColor = operatorButtonColor,
-                    onClick = {onOperatorClick(CalculatorOperator.Equals)}
+                    onClick = { onOperatorClick(CalculatorOperator.Equals) }
                 )
             }
         }
