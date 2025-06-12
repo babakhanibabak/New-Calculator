@@ -38,5 +38,18 @@ class CalculatorScreenViewModel @Inject constructor():ViewModel() {
             }
         }
         }
+
+    fun onOperatorClick(operator: CalculatorOperator){
+        when(operator){
+            CalculatorOperator.Divide -> TODO()
+            CalculatorOperator.Equals -> calculateResult()
+            CalculatorOperator.Minus -> TODO()
+            CalculatorOperator.Multiply -> TODO()
+            CalculatorOperator.Percent -> TODO()
+            CalculatorOperator.Plus -> TODO()
+            CalculatorOperator.PlusMinus -> TODO()
+        }
     }
-}
+
+
+    }
