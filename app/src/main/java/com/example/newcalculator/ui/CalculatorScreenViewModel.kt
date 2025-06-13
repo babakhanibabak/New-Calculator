@@ -50,6 +50,23 @@ class CalculatorScreenViewModel @Inject constructor():ViewModel() {
             CalculatorOperator.PlusMinus -> TODO()
         }
     }
+    private fun calculateResult(){
+        with(_uiState.value){
+            if (firstNumber.isNotEmpty() && secondNumber.isNotEmpty() && operator!=null){
+                val decimalFirstNumber=firstNumber.toBigDecimal()
+                val decimalSecondNumber=secondNumber.toBigDecimal()
 
+                val result=when(operator){
+                    is CalculatorOperator.Plus -> decimalFirstNumber+decimalSecondNumber
+                    is CalculatorOperator.Minus -> decimalFirstNumber-decimalSecondNumber
+                    is CalculatorOperator.Divide ->decimalFirstNumber/decimalSecondNumber
+                    CalculatorOperator.Equals -> TODO()
+                    CalculatorOperator.Multiply -> decimalFirstNumber * decimalSecondNumber
+                    CalculatorOperator.Percent ->  decimalFirstNumber % decimalSecondNumber
+                    CalculatorOperator.PlusMinus ->  TODO()
+                }
+            }
+        }
+    }
 
     }
