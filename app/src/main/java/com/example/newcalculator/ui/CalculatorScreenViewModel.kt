@@ -102,4 +102,7 @@ class CalculatorScreenViewModel @Inject constructor():ViewModel() {
         }
     }
 
+    fun onDotClick(){
+
+    }
     }
