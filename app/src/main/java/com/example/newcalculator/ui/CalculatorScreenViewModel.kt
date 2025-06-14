@@ -65,8 +65,17 @@ class CalculatorScreenViewModel @Inject constructor():ViewModel() {
                     CalculatorOperator.Percent ->  decimalFirstNumber % decimalSecondNumber
                     CalculatorOperator.PlusMinus ->  TODO()
                 }
+                _uiState.update {
+                    it.copy(
+                        result = result.toString(),
+                        firstNumber=result.toString(),
+                        secondNumber="",
+                        operator=null
+                    )
+                }
             }
         }
     }
+
 
     }
