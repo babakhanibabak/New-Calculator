@@ -47,7 +47,7 @@ class CalculatorScreenViewModel @Inject constructor():ViewModel() {
             CalculatorOperator.Multiply -> TODO()
             CalculatorOperator.Percent -> TODO()
             CalculatorOperator.Plus -> TODO()
-            CalculatorOperator.PlusMinus -> TODO()
+            CalculatorOperator.PlusMinus -> setPlusMinus()
         }
     }
     private fun calculateResult(){
@@ -77,5 +77,29 @@ class CalculatorScreenViewModel @Inject constructor():ViewModel() {
         }
     }
 
+    private fun setPlusMinus(){
+        val number=if (_uiState.value.operator==null){
+            _uiState.value.firstNumber
+        }else{
+            _uiState.value.secondNumber
+        }
+
+        val newNumber=if (number.isNotEmpty() && number!="0" && number.first() !='-'){
+            "-$number"
+        }else if (number.isNotEmpty() && number.first() =='-'){
+            number.substring(1)
+        }else{
+            number
+        }
+        if (_uiState.value.operator==null){
+            _uiState.update {
+                it.copy(firstNumber = newNumber, result = newNumber)
+            }
+        }else{
+            _uiState.update {
+                it.copy(secondNumber = newNumber, result = newNumber)
+            }
+        }
+    }
 
     }
