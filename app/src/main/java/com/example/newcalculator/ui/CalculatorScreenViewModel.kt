@@ -103,6 +103,15 @@ class CalculatorScreenViewModel @Inject constructor():ViewModel() {
     }
 
     fun onDotClick(){
+if (_uiState.value.operator==null){
+    if(!_uiState.value.firstNumber.contains(".")){
+       val validFirstNumber=if (_uiState.value.firstNumber == "") "0" else{
+           _uiState.value.firstNumber
+       }
+        val newNumber="$validFirstNumber."
 
+
+    }
+}
     }
     }
