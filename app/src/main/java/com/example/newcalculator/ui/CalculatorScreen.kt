@@ -37,7 +37,8 @@ fun CalculatorScreen(
         uiState = uiState,
         onClearClick = viewModel::onClearClick,
         onNumberClick = viewModel::onNumberClick,
-        onOperatorClick = viewModel::onOperatorClick
+        onOperatorClick = viewModel::onOperatorClick,
+        onDotClick = viewModel::onDotClick
     )
 }
 
