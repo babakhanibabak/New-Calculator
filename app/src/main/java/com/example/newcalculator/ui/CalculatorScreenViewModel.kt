@@ -47,6 +47,7 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
             CalculatorOperator.Percent -> TODO()
             CalculatorOperator.Plus -> TODO()
             CalculatorOperator.PlusMinus -> setPlusMinus()
+            CalculatorOperator.Pow -> TODO()
         }
     }
 
@@ -64,6 +65,7 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
                     CalculatorOperator.Multiply -> decimalFirstNumber * decimalSecondNumber
                     CalculatorOperator.Percent -> decimalFirstNumber % decimalSecondNumber
                     CalculatorOperator.PlusMinus -> TODO()
+                    CalculatorOperator.Pow -> TODO()
                 }
                 _uiState.update {
                     it.copy(
