@@ -86,9 +86,9 @@ fun CalculatorScreenContent(
                     onClick = onClearClick,
                 )
                 CalculatorButton(
-                    text = "+/-",
+                    text = "x\u00B2",
                     backgroundColor = operatorButtonColor,
-                    onClick = { onOperatorClick(CalculatorOperator.PlusMinus) }
+                    onClick = { onOperatorClick(CalculatorOperator.Pow) }
                 )
                 CalculatorButton(
                     text = "%",
@@ -160,7 +160,10 @@ fun CalculatorScreenContent(
             }
             CalculatorRow {
                 CalculatorButton(
-                    weight = 2f,
+                    text = "+/-",
+                    onClick = { onOperatorClick(CalculatorOperator.PlusMinus) }
+                )
+                CalculatorButton(
                     text = "0",
                     onClick = { onNumberClick(1) }
                 )
