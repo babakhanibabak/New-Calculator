@@ -15,5 +15,6 @@ sealed interface CalculatorOperator {
     data object Divide : CalculatorOperator
     data object Multiply : CalculatorOperator
     data object Equals : CalculatorOperator
+    data object Pow:CalculatorOperator
 }
 
