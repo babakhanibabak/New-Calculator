@@ -125,4 +125,12 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
         }
     }
     }
+
+    fun onSquareClick(){
+        val numberToSquare=if (_uiState.value.operator==null){
+            _uiState.value.firstNumber
+        }else{
+            _uiState.value.secondNumber
+        }
+    }
 }
