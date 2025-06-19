@@ -132,5 +132,11 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
         }else{
             _uiState.value.secondNumber
         }
+
+        val squaredResult=numberToSquare.toBigDecimal()?.let {
+            it.pow(2).toString()
+        }?:return
+
+
     }
 }
