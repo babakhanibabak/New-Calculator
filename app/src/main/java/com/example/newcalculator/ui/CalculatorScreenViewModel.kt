@@ -113,30 +113,40 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
                 val newNumber = "$validFirstNumber."
                 _uiState.update { it.copy(firstNumber = newNumber, result = newNumber) }
             }
-        }else{
-        if (_uiState.value.operator==null){
-            if (!_uiState.value.firstNumber.contains(".")){
-                val validSecondNumber=if (_uiState.value.secondNumber=="")"0" else{
-                    _uiState.value.secondNumber
+        } else {
+            if (_uiState.value.operator == null) {
+                if (!_uiState.value.firstNumber.contains(".")) {
+                    val validSecondNumber = if (_uiState.value.secondNumber == "") "0" else {
+                        _uiState.value.secondNumber
+                    }
+                    val newNumber = "$validSecondNumber."
+                    _uiState.update { it.copy(secondNumber = newNumber, result = newNumber) }
                 }
-                val newNumber="$validSecondNumber."
-                _uiState.update { it.copy(secondNumber = newNumber, result = newNumber) }
             }
         }
     }
-    }
 
-    fun onSquareClick(){
-        val numberToSquare=if (_uiState.value.operator==null){
+    fun onSquareClick() {
+        val numberToSquare = if (_uiState.value.operator == null) {
             _uiState.value.firstNumber
-        }else{
+        } else {
             _uiState.value.secondNumber
         }
 
-        val squaredResult=numberToSquare.toBigDecimal()?.let {
+        val squaredResult = numberToSquare.toBigDecimal()?.let {
             it.pow(2).toString()
-        }?:return
+        } ?: return
 
-
+        if (_uiState.value.operator == null) {
+            _uiState.value = _uiState.value.copy(
+                firstNumber = squaredResult,
+                result = squaredResult
+            )
+        } else {
+            _uiState.value = _uiState.value.copy(
+                secondNumber = squaredResult,
+                result = squaredResult
+            )
+        }
     }
 }
