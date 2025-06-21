@@ -38,7 +38,8 @@ fun CalculatorScreen(
         onClearClick = viewModel::onClearClick,
         onNumberClick = viewModel::onNumberClick,
         onOperatorClick = viewModel::onOperatorClick,
-        onDotClick = viewModel::onDotClick
+        onDotClick = viewModel::onDotClick,
+        onSquareClick = viewModel::onSquareClick
     )
 }
 
