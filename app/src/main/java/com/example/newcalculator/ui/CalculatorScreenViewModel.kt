@@ -6,6 +6,7 @@ import jakarta.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlin.math.sqrt
 
 @HiltViewModel
 class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
@@ -149,4 +150,18 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
             )
         }
     }
-}
+
+    fun onSquareRootClick(){
+        val numberToRoot=if (_uiState.value.operator==null){
+            _uiState.value.firstNumber
+        }else{
+            _uiState.value.secondNumber
+        }
+
+        val sqrtResult=numberToRoot.toDoubleOrNull()?.takeIf { it>= 0 }?.let {
+            sqrt(it).toString()
+        }?:return
+
+    }
+    }
+
