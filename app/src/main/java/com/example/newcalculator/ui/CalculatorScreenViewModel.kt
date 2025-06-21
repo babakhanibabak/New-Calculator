@@ -166,7 +166,21 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
             return
         }
 
+        // If valid, calculate the square root
+        val result = sqrt(parsedNumber)
+        val resultText=if (result % 1==0.0)result.toInt().toString() else result.toString()
 
+        if (_uiState.value.operator == null) {
+            _uiState.value = _uiState.value.copy(
+                firstNumber = resultText,
+                result = resultText
+            )
+        } else {
+            _uiState.value = _uiState.value.copy(
+                secondNumber = resultText,
+                result = resultText
+            )
+        }
     }
     }
 
