@@ -158,10 +158,16 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
             _uiState.value.secondNumber
         }
 
-        val sqrtResult=numberToRoot.toDoubleOrNull()?.takeIf { it>= 0 }?.let {
-            sqrt(it).toString()
-        }?:return
+        val parsedNumber = numberToRoot.toDoubleOrNull()
+
+        // Check for invalid input: not a number or negative
+        if (parsedNumber == null || parsedNumber < 0) {
+            _uiState.value = _uiState.value.copy(result = "Invalid input")
+            return
+        }
+
 
     }
     }
+
 
