@@ -50,8 +50,8 @@ fun CalculatorScreenContent(
     onClearClick: () -> Unit = {},
     onNumberClick: (Int) -> Unit = {},
     onDotClick: () -> Unit = {},
-
-    ) {
+    onSquareClick: () -> Unit = {}
+) {
     Scaffold(modifier = Modifier.fillMaxSize(),
         topBar = {
             CalculatorAppBar(title = "Calculator")
@@ -88,7 +88,7 @@ fun CalculatorScreenContent(
                 CalculatorButton(
                     text = "x\u00B2",
                     backgroundColor = operatorButtonColor,
-                    onClick = { onOperatorClick(CalculatorOperator.Pow) }
+                    onClick = onSquareClick
                 )
                 CalculatorButton(
                     text = "%",
