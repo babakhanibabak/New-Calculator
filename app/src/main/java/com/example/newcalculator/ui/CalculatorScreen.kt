@@ -51,7 +51,8 @@ fun CalculatorScreenContent(
     onClearClick: () -> Unit = {},
     onNumberClick: (Int) -> Unit = {},
     onDotClick: () -> Unit = {},
-    onSquareClick: () -> Unit = {}
+    onSquareClick: () -> Unit = {},
+    onSquareRootClick:()-> Unit={}
 ) {
     Scaffold(modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -82,7 +83,7 @@ fun CalculatorScreenContent(
             }
             CalculatorRow {
                 CalculatorButton(
-                    text = "AC",
+                    text = "²\u221Ax",
                     backgroundColor = operatorButtonColor,
                     onClick = onClearClick,
                 )
@@ -90,6 +91,28 @@ fun CalculatorScreenContent(
                     text = "x\u00B2",
                     backgroundColor = operatorButtonColor,
                     onClick = onSquareClick
+                )
+                CalculatorButton(
+                    text = "AC",
+                    backgroundColor = operatorButtonColor,
+                    onClick = onClearClick,
+                )
+                CalculatorButton(
+                    text = "⌫",
+                    backgroundColor = operatorButtonColor,
+                    onClick = {  }
+                )
+            }
+            CalculatorRow {
+                CalculatorButton(
+                    text = "1/x",
+                    backgroundColor = operatorButtonColor,
+                    onClick = {},
+                )
+                CalculatorButton(
+                    text = "x\u00B3",
+                    backgroundColor = operatorButtonColor,
+                    onClick = {}
                 )
                 CalculatorButton(
                     text = "%",
