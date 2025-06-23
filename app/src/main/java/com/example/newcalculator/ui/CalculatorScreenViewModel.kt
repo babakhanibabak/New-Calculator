@@ -6,6 +6,7 @@ import jakarta.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlin.math.pow
 import kotlin.math.sqrt
 
 @HiltViewModel
@@ -158,18 +159,17 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
             _uiState.value.secondNumber
         }
 
-        val parsedNumber = numberToRoot.toDoubleOrNull()
+        val number  = numberToRoot.toDoubleOrNull()
 
         // Check for invalid input: not a number or negative
-        if (parsedNumber == null || parsedNumber < 0) {
-            _uiState.value = _uiState.value.copy(result = "Invalid input")
-            return
+        val resultText = if (number  == null || number  <= 0) {
+            "Invalid input"
+        } else {
+
+            // If valid, calculate the square root
+            val result = sqrt(number)
+             if (result % 1 == 0.0) result.toInt().toString() else result.toString()
         }
-
-        // If valid, calculate the square root
-        val result = sqrt(parsedNumber)
-        val resultText=if (result % 1==0.0)result.toInt().toString() else result.toString()
-
         if (_uiState.value.operator == null) {
             _uiState.value = _uiState.value.copy(
                 firstNumber = resultText,
@@ -182,6 +182,9 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
             )
         }
     }
+
+
+
     }
 
 
