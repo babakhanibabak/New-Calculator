@@ -59,8 +59,7 @@ dependencies {
     // Hilt Navigation Compose
     implementation(libs.hilt.navigation.compose)
 
-    //math
-    implementation(libs.math.view)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
