@@ -39,7 +39,8 @@ fun CalculatorScreen(
         onNumberClick = viewModel::onNumberClick,
         onOperatorClick = viewModel::onOperatorClick,
         onDotClick = viewModel::onDotClick,
-        onSquareClick = viewModel::onSquareClick
+        onSquareClick = viewModel::onSquareClick,
+        onSquareRootClick = viewModel::onSquareRootClick
     )
 }
 
@@ -85,7 +86,7 @@ fun CalculatorScreenContent(
                 CalculatorButton(
                     text = "²\u221Ax",
                     backgroundColor = operatorButtonColor,
-                    onClick = onClearClick,
+                    onClick = onSquareRootClick,
                 )
                 CalculatorButton(
                     text = "x\u00B2",
@@ -98,7 +99,7 @@ fun CalculatorScreenContent(
                     onClick = onClearClick,
                 )
                 CalculatorButton(
-                    text = "⌫",
+                    text = "\u232B",
                     backgroundColor = operatorButtonColor,
                     onClick = {  }
                 )
