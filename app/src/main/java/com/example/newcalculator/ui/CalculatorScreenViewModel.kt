@@ -183,6 +183,21 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
         }
     }
 
+    fun onDeleteClick(){
+        if (_uiState.value.operator==null){
+            val updated=_uiState.value.firstNumber.dropLast(1)
+            _uiState.value=_uiState.value.copy(
+                firstNumber = updated,
+                result = updated
+            )
+        }else{
+            val updated=_uiState.value.secondNumber.dropLast(1)
+            _uiState.value=_uiState.value.copy(
+                secondNumber = updated,
+                result = updated
+            )
+        }
+    }
 
 
     }
