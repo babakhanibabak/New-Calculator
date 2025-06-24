@@ -199,6 +199,32 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
         }
     }
 
+    //x³
+    fun onCubeClick(){
+        val numberToCube=if (_uiState.value.operator==null){
+            _uiState.value.firstNumber
+        } else {
+            _uiState.value.secondNumber
+        }
+        val cubeResult=numberToCube.toDoubleOrNull()?.let {
+            val result=it.pow(3)
+            // Clean formatting (e.g. show 8 instead of 8.0)
+            if (result % 1 == 0.0 ) result.toInt().toString() else result.toString()
+        } ?: "Invalid Input"
+        if (_uiState.value.operator==null){
+            _uiState.value= _uiState.value.copy(
+                firstNumber = cubeResult,
+                result = cubeResult
+            )
+        }else{
+            _uiState.value=_uiState.value.copy(
+                secondNumber = cubeResult,
+                result = cubeResult
+            )
+        }
+    }
+
+
 
     }
 
