@@ -223,7 +223,31 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
             )
         }
     }
+    fun onReciprocalClick(){
+        val number=if (_uiState.value.operator==null){
+            _uiState.value.firstNumber
+        }else{
+            _uiState.value.secondNumber
+        }
 
+        val reciprocalResult= number.toDoubleOrNull().takeIf { it != 0.0 }?.let {
+            val result=1/it
+            // Clean formatting: remove .0 for integers
+            if (result % 1 == 0.0)result.toInt().toString() else result.toString()
+        }?: "Invalid input"
+
+        if (_uiState.value.operator==null){
+            _uiState.value=_uiState.value.copy(
+                firstNumber = reciprocalResult,
+                result = reciprocalResult
+            )
+        }else{
+            _uiState.value=_uiState.value.copy(
+                secondNumber = reciprocalResult,
+                result = reciprocalResult
+            )
+        }
+    }
 
 
     }
