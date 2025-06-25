@@ -40,7 +40,9 @@ fun CalculatorScreen(
         onOperatorClick = viewModel::onOperatorClick,
         onDotClick = viewModel::onDotClick,
         onSquareClick = viewModel::onSquareClick,
-        onSquareRootClick = viewModel::onSquareRootClick
+        onSquareRootClick = viewModel::onSquareRootClick,
+        onDeleteClick = viewModel::onDeleteClick,
+
     )
 }
 
@@ -53,7 +55,9 @@ fun CalculatorScreenContent(
     onNumberClick: (Int) -> Unit = {},
     onDotClick: () -> Unit = {},
     onSquareClick: () -> Unit = {},
-    onSquareRootClick:()-> Unit={}
+    onSquareRootClick:()-> Unit={},
+    onDeleteClick:()->Unit={},
+
 ) {
     Scaffold(modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -101,7 +105,7 @@ fun CalculatorScreenContent(
                 CalculatorButton(
                     text = "\u232B",
                     backgroundColor = operatorButtonColor,
-                    onClick = {  }
+                    onClick = onDeleteClick
                 )
             }
             CalculatorRow {
