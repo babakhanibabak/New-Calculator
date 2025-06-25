@@ -42,7 +42,7 @@ fun CalculatorScreen(
         onSquareClick = viewModel::onSquareClick,
         onSquareRootClick = viewModel::onSquareRootClick,
         onDeleteClick = viewModel::onDeleteClick,
-
+        onCubeClick=viewModel::onCubeClick,
     )
 }
 
@@ -57,6 +57,7 @@ fun CalculatorScreenContent(
     onSquareClick: () -> Unit = {},
     onSquareRootClick:()-> Unit={},
     onDeleteClick:()->Unit={},
+    onCubeClick:()->Unit={},
 
 ) {
     Scaffold(modifier = Modifier.fillMaxSize(),
@@ -112,7 +113,7 @@ fun CalculatorScreenContent(
                 CalculatorButton(
                     text = "1/x",
                     backgroundColor = operatorButtonColor,
-                    onClick = {},
+                    onClick = onCubeClick,
                 )
                 CalculatorButton(
                     text = "x\u00B3",
