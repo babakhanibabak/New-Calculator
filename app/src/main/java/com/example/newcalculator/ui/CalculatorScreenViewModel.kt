@@ -42,14 +42,12 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
 
     fun onOperatorClick(operator: CalculatorOperator) {
         when (operator) {
-            CalculatorOperator.Divide -> TODO()
             CalculatorOperator.Equals -> calculateResult()
-            CalculatorOperator.Minus -> TODO()
-            CalculatorOperator.Multiply -> TODO()
-            CalculatorOperator.Percent -> TODO()
-            CalculatorOperator.Plus -> TODO()
             CalculatorOperator.PlusMinus -> setPlusMinus()
-            CalculatorOperator.Pow -> TODO()
+            CalculatorOperator.Percent -> TODO()
+            else -> {
+                _uiState.update { it.copy(operator = operator) }
+            }
         }
     }
 
@@ -152,23 +150,23 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
         }
     }
 
-    fun onSquareRootClick(){
-        val numberToRoot=if (_uiState.value.operator==null){
+    fun onSquareRootClick() {
+        val numberToRoot = if (_uiState.value.operator == null) {
             _uiState.value.firstNumber
-        }else{
+        } else {
             _uiState.value.secondNumber
         }
 
-        val number  = numberToRoot.toDoubleOrNull()
+        val number = numberToRoot.toDoubleOrNull()
 
         // Check for invalid input: not a number or negative
-        val resultText = if (number  == null || number  <= 0) {
+        val resultText = if (number == null || number <= 0) {
             "Invalid input"
         } else {
 
             // If valid, calculate the square root
             val result = sqrt(number)
-             if (result % 1 == 0.0) result.toInt().toString() else result.toString()
+            if (result % 1 == 0.0) result.toInt().toString() else result.toString()
         }
         if (_uiState.value.operator == null) {
             _uiState.value = _uiState.value.copy(
@@ -183,16 +181,16 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
         }
     }
 
-    fun onDeleteClick(){
-        if (_uiState.value.operator==null){
-            val updated=_uiState.value.firstNumber.dropLast(1)
-            _uiState.value=_uiState.value.copy(
+    fun onDeleteClick() {
+        if (_uiState.value.operator == null) {
+            val updated = _uiState.value.firstNumber.dropLast(1)
+            _uiState.value = _uiState.value.copy(
                 firstNumber = updated,
                 result = updated
             )
-        }else{
-            val updated=_uiState.value.secondNumber.dropLast(1)
-            _uiState.value=_uiState.value.copy(
+        } else {
+            val updated = _uiState.value.secondNumber.dropLast(1)
+            _uiState.value = _uiState.value.copy(
                 secondNumber = updated,
                 result = updated
             )
@@ -200,56 +198,55 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
     }
 
     //x³
-    fun onCubeClick(){
-        val numberToCube=if (_uiState.value.operator==null){
+    fun onCubeClick() {
+        val numberToCube = if (_uiState.value.operator == null) {
             _uiState.value.firstNumber
         } else {
             _uiState.value.secondNumber
         }
-        val cubeResult=numberToCube.toDoubleOrNull()?.let {
-            val result=it.pow(3)
+        val cubeResult = numberToCube.toDoubleOrNull()?.let {
+            val result = it.pow(3)
             // Clean formatting (e.g. show 8 instead of 8.0)
-            if (result % 1 == 0.0 ) result.toInt().toString() else result.toString()
+            if (result % 1 == 0.0) result.toInt().toString() else result.toString()
         } ?: "Invalid Input"
-        if (_uiState.value.operator==null){
-            _uiState.value= _uiState.value.copy(
+        if (_uiState.value.operator == null) {
+            _uiState.value = _uiState.value.copy(
                 firstNumber = cubeResult,
                 result = cubeResult
             )
-        }else{
-            _uiState.value=_uiState.value.copy(
+        } else {
+            _uiState.value = _uiState.value.copy(
                 secondNumber = cubeResult,
                 result = cubeResult
             )
         }
     }
-    fun onReciprocalClick(){
-        val number=if (_uiState.value.operator==null){
+
+    fun onReciprocalClick() {
+        val number = if (_uiState.value.operator == null) {
             _uiState.value.firstNumber
-        }else{
+        } else {
             _uiState.value.secondNumber
         }
 
-        val reciprocalResult= number.toDoubleOrNull().takeIf { it != 0.0 }?.let {
-            val result=1/it
+        val reciprocalResult = number.toDoubleOrNull().takeIf { it != 0.0 }?.let {
+            val result = 1 / it
             // Clean formatting: remove .0 for integers
-            if (result % 1 == 0.0)result.toInt().toString() else result.toString()
-        }?: "Invalid input"
+            if (result % 1 == 0.0) result.toInt().toString() else result.toString()
+        } ?: "Invalid input"
 
-        if (_uiState.value.operator==null){
-            _uiState.value=_uiState.value.copy(
+        if (_uiState.value.operator == null) {
+            _uiState.value = _uiState.value.copy(
                 firstNumber = reciprocalResult,
                 result = reciprocalResult
             )
-        }else{
-            _uiState.value=_uiState.value.copy(
+        } else {
+            _uiState.value = _uiState.value.copy(
                 secondNumber = reciprocalResult,
                 result = reciprocalResult
             )
         }
     }
-
-
-    }
+}
 
 
