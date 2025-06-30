@@ -196,7 +196,7 @@ fun CalculatorScreenContent(
                 )
                 CalculatorButton(
                     text = "0",
-                    onClick = { onNumberClick(1) }
+                    onClick = { onNumberClick(0) }
                 )
                 CalculatorButton(
                     text = ".",
