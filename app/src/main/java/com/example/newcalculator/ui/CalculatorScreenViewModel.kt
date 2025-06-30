@@ -21,19 +21,26 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
 
     fun onNumberClick(number: Int) {
         if (_uiState.value.operator == null) {
-            val validFirstNumber = if (_uiState.value.firstNumber == "0") "" else {
-                _uiState.value.firstNumber
-            }
+            val validFirstNumber = _uiState.value.firstNumber
 
-            val newNumber = validFirstNumber + number
+            val newNumber = when {
+                validFirstNumber.isEmpty()  -> number.toString()
+                validFirstNumber == "0" && !validFirstNumber.contains(".") ->
+                    {if (number==0)"0" else number.toString()}
+                else -> validFirstNumber + number
+            }
             _uiState.update {
                 it.copy(firstNumber = newNumber, result = newNumber)
             }
         } else {
-            val validSecondNumber = if (_uiState.value.secondNumber == "0") "" else {
-                _uiState.value.secondNumber
+            val validSecondNumber = _uiState.value.secondNumber
+
+            val newNumber = when {
+                validSecondNumber.isEmpty()  -> number.toString()
+                validSecondNumber == "0" && !validSecondNumber.contains(".") ->
+                {if (number==0)"0" else number.toString()}
+                else -> validSecondNumber + number
             }
-            val newNumber = validSecondNumber + number
             _uiState.update {
                 it.copy(secondNumber = newNumber, result = newNumber)
             }
@@ -61,7 +68,7 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
                     is CalculatorOperator.Plus -> decimalFirstNumber + decimalSecondNumber
                     is CalculatorOperator.Minus -> decimalFirstNumber - decimalSecondNumber
                     is CalculatorOperator.Divide -> decimalFirstNumber / decimalSecondNumber
-                    CalculatorOperator.Equals -> TODO()
+                    CalculatorOperator.Equals -> calculateResult()
                     CalculatorOperator.Multiply -> decimalFirstNumber * decimalSecondNumber
                     CalculatorOperator.Percent -> decimalFirstNumber % decimalSecondNumber
                     CalculatorOperator.PlusMinus -> TODO()
@@ -181,19 +188,19 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
         }
     }
 
-    fun onDeleteClick() {
+   fun onDeleteClick() {
         if (_uiState.value.operator == null) {
             val updated = _uiState.value.firstNumber.dropLast(1)
             _uiState.value = _uiState.value.copy(
                 firstNumber = updated,
-                result = updated
+               result = updated
             )
         } else {
-            val updated = _uiState.value.secondNumber.dropLast(1)
+           val updated = _uiState.value.secondNumber.dropLast(1)
             _uiState.value = _uiState.value.copy(
                 secondNumber = updated,
                 result = updated
-            )
+           )
         }
     }
 
