@@ -117,19 +117,19 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
                 val validFirstNumber = if (_uiState.value.firstNumber == "") "0" else {
                     _uiState.value.firstNumber
                 }
+
                 val newNumber = "$validFirstNumber."
                 _uiState.update { it.copy(firstNumber = newNumber, result = newNumber) }
             }
         } else {
-            if (_uiState.value.operator == null) {
-                if (!_uiState.value.firstNumber.contains(".")) {
+                if (!_uiState.value.secondNumber.contains(".")) {
                     val validSecondNumber = if (_uiState.value.secondNumber == "") "0" else {
                         _uiState.value.secondNumber
                     }
                     val newNumber = "$validSecondNumber."
                     _uiState.update { it.copy(secondNumber = newNumber, result = newNumber) }
                 }
-            }
+
         }
     }
 
