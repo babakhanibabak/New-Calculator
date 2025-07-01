@@ -73,7 +73,15 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
                 val result = when (operator) {
                     is CalculatorOperator.Plus -> decimalFirstNumber + decimalSecondNumber
                     is CalculatorOperator.Minus -> decimalFirstNumber - decimalSecondNumber
-                    is CalculatorOperator.Divide -> TODO()
+                    is CalculatorOperator.Divide -> {
+                        if (decimalSecondNumber.compareTo(BigDecimal.ZERO) == 0) {
+                            "Cannot divide by zero"
+                        } else {
+                            val divisionResult = decimalFirstNumber.divide(decimalSecondNumber, 10, RoundingMode.HALF_UP)
+                                .stripTrailingZeros()
+                            divisionResult.toPlainString()
+                        }
+                    }
                     CalculatorOperator.Equals -> calculateResult()
                     CalculatorOperator.Multiply -> decimalFirstNumber * decimalSecondNumber
                     CalculatorOperator.Percent -> decimalFirstNumber % decimalSecondNumber
