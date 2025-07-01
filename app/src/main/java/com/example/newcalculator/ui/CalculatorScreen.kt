@@ -43,7 +43,8 @@ fun CalculatorScreen(
         onSquareRootClick = viewModel::onSquareRootClick,
         onDeleteClick = viewModel::onDeleteClick,
         onCubeClick=viewModel::onCubeClick,
-        onReciprocalClick=viewModel::onReciprocalClick
+        onReciprocalClick=viewModel::onReciprocalClick,
+        onPercentClick = viewModel::onPercentClick
     )
 }
 
@@ -59,7 +60,8 @@ fun CalculatorScreenContent(
     onSquareRootClick:()-> Unit={},
     onDeleteClick:()->Unit={},
     onCubeClick:()->Unit={},
-    onReciprocalClick:()->Unit={}
+    onReciprocalClick:()->Unit={},
+    onPercentClick:()-> Unit={}
 ) {
     Scaffold(modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -124,7 +126,7 @@ fun CalculatorScreenContent(
                 CalculatorButton(
                     text = "%",
                     backgroundColor = operatorButtonColor,
-                    onClick = { onOperatorClick(CalculatorOperator.Percent) }
+                    onClick =  onPercentClick
                 )
                 CalculatorButton(
                     text = "÷",
