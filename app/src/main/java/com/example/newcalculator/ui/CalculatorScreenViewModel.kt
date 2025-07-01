@@ -24,9 +24,11 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
             val validFirstNumber = _uiState.value.firstNumber
 
             val newNumber = when {
-                validFirstNumber.isEmpty()  -> number.toString()
-                validFirstNumber == "0" && !validFirstNumber.contains(".") ->
-                    {if (number==0)"0" else number.toString()}
+                validFirstNumber.isEmpty() -> number.toString()
+                validFirstNumber == "0" && !validFirstNumber.contains(".") -> {
+                    if (number == 0) "0" else number.toString()
+                }
+
                 else -> validFirstNumber + number
             }
             _uiState.update {
@@ -36,9 +38,11 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
             val validSecondNumber = _uiState.value.secondNumber
 
             val newNumber = when {
-                validSecondNumber.isEmpty()  -> number.toString()
-                validSecondNumber == "0" && !validSecondNumber.contains(".") ->
-                {if (number==0)"0" else number.toString()}
+                validSecondNumber.isEmpty() -> number.toString()
+                validSecondNumber == "0" && !validSecondNumber.contains(".") -> {
+                    if (number == 0) "0" else number.toString()
+                }
+
                 else -> validSecondNumber + number
             }
             _uiState.update {
@@ -122,13 +126,13 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
                 _uiState.update { it.copy(firstNumber = newNumber, result = newNumber) }
             }
         } else {
-                if (!_uiState.value.secondNumber.contains(".")) {
-                    val validSecondNumber = if (_uiState.value.secondNumber == "") "0" else {
-                        _uiState.value.secondNumber
-                    }
-                    val newNumber = "$validSecondNumber."
-                    _uiState.update { it.copy(secondNumber = newNumber, result = newNumber) }
+            if (!_uiState.value.secondNumber.contains(".")) {
+                val validSecondNumber = if (_uiState.value.secondNumber == "") "0" else {
+                    _uiState.value.secondNumber
                 }
+                val newNumber = "$validSecondNumber."
+                _uiState.update { it.copy(secondNumber = newNumber, result = newNumber) }
+            }
 
         }
     }
@@ -188,19 +192,19 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
         }
     }
 
-   fun onDeleteClick() {
+    fun onDeleteClick() {
         if (_uiState.value.operator == null) {
             val updated = _uiState.value.firstNumber.dropLast(1)
             _uiState.value = _uiState.value.copy(
                 firstNumber = updated,
-               result = updated
+                result = updated
             )
         } else {
-           val updated = _uiState.value.secondNumber.dropLast(1)
+            val updated = _uiState.value.secondNumber.dropLast(1)
             _uiState.value = _uiState.value.copy(
                 secondNumber = updated,
                 result = updated
-           )
+            )
         }
     }
 
@@ -212,7 +216,7 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
             _uiState.value.secondNumber
         }
         val cubeResult = numberToCube.toDoubleOrNull()
-        val resultText=if (cubeResult != null) {
+        val resultText = if (cubeResult != null) {
             val cube = cubeResult.pow(3)
             // Show integer if possible
             if (cube % 1 == 0.0) cube.toInt().toString() else cube.toString()
@@ -257,6 +261,48 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
             )
         }
     }
+
+    fun onPercentClick() {
+        val currentState = _uiState.value
+
+        val resultText = when {
+            currentState.operator == null -> {
+                val value = currentState.firstNumber.toDoubleOrNull()
+                if (value != null) {
+                    val percent = value / 100
+                    if (percent % 1 == 0.0) percent.toInt().toString() else percent.toString()
+                } else {
+                    "Invalid input"
+                }
+            }
+
+            else -> {
+                val a = currentState.firstNumber.toDoubleOrNull()
+                val b = currentState.secondNumber.toDoubleOrNull()
+
+                if (a != null && b != null) {
+                    val percent = a * (b / 100)
+                    if (percent % 1 == 0.0) percent.toInt().toString() else percent.toString()
+                } else {
+                    "Invalid input"
+                }
+            }
+        }
+
+
+        _uiState.value = if (currentState.operator == null) {
+            currentState.copy(
+                firstNumber = resultText,
+                result = resultText
+            )
+        } else {
+            currentState.copy(
+                secondNumber = resultText,
+                result = resultText
+            )
+        }
+    }
 }
+
 
 
