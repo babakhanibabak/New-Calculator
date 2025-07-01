@@ -211,20 +211,23 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
         } else {
             _uiState.value.secondNumber
         }
-        val cubeResult = numberToCube.toDoubleOrNull()?.let {
-            val result = it.pow(3)
-            // Clean formatting (e.g. show 8 instead of 8.0)
-            if (result % 1 == 0.0) result.toInt().toString() else result.toString()
-        } ?: "Invalid Input"
+        val cubeResult = numberToCube.toDoubleOrNull()
+        val resultText=if (cubeResult != null) {
+            val cube = cubeResult.pow(3)
+            // Show integer if possible
+            if (cube % 1 == 0.0) cube.toInt().toString() else cube.toString()
+        } else {
+            "Invalid input"
+        }
         if (_uiState.value.operator == null) {
             _uiState.value = _uiState.value.copy(
-                firstNumber = cubeResult,
-                result = cubeResult
+                firstNumber = resultText,
+                result = resultText
             )
         } else {
             _uiState.value = _uiState.value.copy(
-                secondNumber = cubeResult,
-                result = cubeResult
+                secondNumber = resultText,
+                result = resultText
             )
         }
     }
