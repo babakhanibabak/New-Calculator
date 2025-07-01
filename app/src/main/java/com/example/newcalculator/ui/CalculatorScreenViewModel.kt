@@ -6,6 +6,8 @@ import jakarta.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import java.math.BigDecimal
+import java.math.RoundingMode
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -55,7 +57,7 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
         when (operator) {
             CalculatorOperator.Equals -> calculateResult()
             CalculatorOperator.PlusMinus -> setPlusMinus()
-            CalculatorOperator.Percent -> TODO()
+            CalculatorOperator.Percent -> onPercentClick()
             else -> {
                 _uiState.update { it.copy(operator = operator) }
             }
@@ -71,11 +73,11 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
                 val result = when (operator) {
                     is CalculatorOperator.Plus -> decimalFirstNumber + decimalSecondNumber
                     is CalculatorOperator.Minus -> decimalFirstNumber - decimalSecondNumber
-                    is CalculatorOperator.Divide -> decimalFirstNumber / decimalSecondNumber
+                    is CalculatorOperator.Divide -> TODO()
                     CalculatorOperator.Equals -> calculateResult()
                     CalculatorOperator.Multiply -> decimalFirstNumber * decimalSecondNumber
                     CalculatorOperator.Percent -> decimalFirstNumber % decimalSecondNumber
-                    CalculatorOperator.PlusMinus -> TODO()
+                    CalculatorOperator.PlusMinus -> setPlusMinus()
                     CalculatorOperator.Pow -> TODO()
                 }
                 _uiState.update {
@@ -89,6 +91,7 @@ class CalculatorScreenViewModel @Inject constructor() : ViewModel() {
             }
         }
     }
+
 
     private fun setPlusMinus() {
         val number = if (_uiState.value.operator == null) {
