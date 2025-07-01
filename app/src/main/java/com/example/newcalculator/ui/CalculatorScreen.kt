@@ -114,12 +114,12 @@ fun CalculatorScreenContent(
                 CalculatorButton(
                     text = "1/x",
                     backgroundColor = operatorButtonColor,
-                    onClick = onCubeClick,
+                    onClick = onReciprocalClick,
                 )
                 CalculatorButton(
                     text = "x\u00B3",
                     backgroundColor = operatorButtonColor,
-                    onClick = onReciprocalClick
+                    onClick = onCubeClick
                 )
                 CalculatorButton(
                     text = "%",
